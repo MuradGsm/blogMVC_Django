@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h2>{{ post.title }}</h2>
+                <small class="text-muted">
+                    Автор: {{ post.author.username }} | 
+                    {{ post.created_at|date:"d E Y H:i" }}
+                </small>
+            </div>
+            <div class="card-body">
+                <p>{{ post.content }}</p>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h3>Комментарии ({{ comments.count }})</h3>
+            {% for comment in comments %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            {{ comment.author.username }} | 
+                            {{ comment.created_at|date:"d E Y H:i" }}
+                        </h6>
+                        <p>{{ comment.content }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="alert alert-info">Нет комментариев</p>
+            {% endfor %}
+
+            {% if user.is_authenticated %}
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h4>Добавить комментарий</h4>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <textarea name="content" class="form-control" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
