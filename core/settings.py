@@ -72,7 +72,12 @@ DATABASES = {
 }
 
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = [
+    'http://5.44.45.89',
+    'https://5.44.45.89',
+    'http://blog.example.com',
+    'https://blog.example.com'
+]
 
 
 # Password validation
