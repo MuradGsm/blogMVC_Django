@@ -66,10 +66,14 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'blogdb'),
         'USER': os.getenv('DB_USER', 'admin'),
         'PASSWORD': os.getenv('DB_PASSWORD', '1234'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5433'),
+        'HOST': os.getenv('DB_HOST', 'db'),  # Изменено по умолчанию на 'db'
+        'PORT': os.getenv('DB_PORT', '5432'),  # Изменено на стандартный порт
     }
 }
+
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1']
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
